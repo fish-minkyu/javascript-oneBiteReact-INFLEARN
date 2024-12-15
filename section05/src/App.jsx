@@ -1,7 +1,6 @@
 import './App.css';
-import Bulb from "./components/Bulb";
-import Counter from "./components/Counter";
 
+import Register from './components/Register';
 
 // 함수 컴포넌트
 // : 함수로 만든 컴포넌트
@@ -9,8 +8,7 @@ import Counter from "./components/Counter";
 function App() {
   return (
     <>
-    <Bulb />
-    <Counter />
+      <Register />
     </>
   );
 };
