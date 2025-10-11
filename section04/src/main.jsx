@@ -4,12 +4,10 @@ import './index.css'
 import App from './App.jsx'
 
 // createRoot
-// : 인수로 전달받은 HTML 요소를 리액트의 루트로, 즉 뿌리로 만들어주는 역할을 한다.
+// : 인수로 전달받는 html의 요소를 React의 뿌리로 만들어주는 역할이다.
 createRoot(document.getElementById('root')).render(
-  // StrictMode는 무시해도 된다.
   <StrictMode>
-    {/* html 태그를 쓰듯이 <App />이라고 써놓은 것은
-        컴포넌트를 렌더링하는 문법이다. */}
+    /* App이란 컴포넌트를 렌더링하겠다. */
     <App />
   </StrictMode>,
 )

@@ -3,9 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-// 컴포넌트
-// : 리액트에서는 이렇게 함수가 HTML 태그를 리턴하고 있으면
-// 이 함수를 컴포넌트라고 부른다.
+// 리액트에선 함수가 html 태그들을 리턴하고 있으면
+// 그 함수를 컴포넌트라고 부른다.
 function App() {
   const [count, setCount] = useState(0)
 
