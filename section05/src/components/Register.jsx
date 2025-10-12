@@ -6,56 +6,53 @@ import { useState } from "react";
 // 3. 국적
 // 4. 자기소개
 const Register = () => {
-    // 이름
-    const [name, setName] = useState("이름");
-    const onChageName = (e) => {
-        console.log(e);
-        setName(e.target.value);
-    };
+    const [input, setInput] = useState({
+        name: "",
+        birth: "",
+        country: "",
+        bio: "",
+    });
 
-    // 생년월일
-    const [birth, setBirth] = useState("");
-    const onChageBirth = (e) => {
-        setBirth(e.target.value);
-    };
-
-    // 국적
-    const [country, setCountry] = useState("");
-    const onChangeCountry = (e) => {
-        setCountry(e.target.value);
-    };
-
-    // 자기소개
-    const [bio, setBio] = useState("");
-    const onChangeBio = (e) => {
-        setBio(e.target.value);
+    const onChage = (e) => {
+        setInput({
+            // ...input이 없다면 나머지 속성들의 값은 저장이 되지 않는다.
+            ...input,
+            // e.target.name
+            // : 이벤트가 발생한 태그의 name 속성의 값이 들어있다.
+            [e.target.name]: e.target.value,
+        });
     };
 
     return (
         <div>
             <div>
                 <input
-                    value={name}
-                    onChange={onChageName}
+                    name="name"
+                    value={input.name}
+                    onChange={onChage}
                     placeholder={"이름"}
                 />
             </div>
             <div>
-                <input value={birth} onChange={onChageBirth} type="date" />
+                <input
+                    name="birth"
+                    value={input.birth}
+                    onChange={onChage}
+                    type="date"
+                />
             </div>
 
             <div>
-                <select value={country} onChange={onChangeCountry}>
+                <select name="country" value={input.country} onChange={onChage}>
                     <option></option>
                     <option value="kr">한국</option>
                     <option value="us">미국</option>
                     <option value="uk">영국</option>
                 </select>
-                {country}
             </div>
 
             <div>
-                <textarea value={bio} onChange={onChangeBio} />
+                <textarea name="bio" value={input.bio} onChange={onChage} />
             </div>
         </div>
     );
