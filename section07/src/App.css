@@ -1,0 +1,18 @@
+body {
+    padding: 20px;
+}
+
+.App {
+    /* 화면 상의 남는 부분을 좌우로 마진을 줘서 가운데 정렬 */
+    margin: 0 auto;
+    width: 400px;
+}
+
+.App > section {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(240, 240, 240);
+    /* 모서리 둥글게 만들기 */
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
