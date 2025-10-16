@@ -1,6 +1,6 @@
 import "./List.css";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const List = ({ todos, onUpdate, onDelete }) => {
     // 검색 기능
@@ -22,9 +22,23 @@ const List = ({ todos, onUpdate, onDelete }) => {
 
     const filteredTodos = getFilteredData();
 
+    // 1. 콜백함수: useMemo는 콜백 함수의 반환값을 그대로 반환한다.
+    // 2. 의존성 배열: deps
+    // : deps를 기준으로 메모이제이션을 한다.
+    const { totalCount, doneCount, notDoneCount } = useMemo(() => {
+        const totalCount = todos.length;
+        const doneCount = todos.filter((todo) => todo.isDone).length;
+        const notDoneCount = totalCount - doneCount;
+
+        return { totalCount, doneCount, notDoneCount };
+    }, [todos]);
+
     return (
         <div className="List">
             <h4>Todo List 🌱</h4>
+            <div>total: {totalCount}</div>
+            <div>done: {doneCount}</div>
+            <div>notDone: {notDoneCount}</div>
             <input
                 value={search}
                 onChange={onChangeSearch}
