@@ -1,11 +1,11 @@
 import "./TodoItem.css";
 
-const TodoItem = () => {
+const TodoItem = ({ id, isDone, content, date }) => {
     return (
         <div className="TodoItem">
-            <input type="checkbox" />
-            <div className="content">Todo...</div>
-            <div className="Date">Date</div>
+            <input readOnly type="checkbox" checked={isDone} />
+            <div className="content">{content}</div>
+            <div className="Date">{new Date(date).toLocaleString()}</div>
             <button>삭제</button>
         </div>
     );
