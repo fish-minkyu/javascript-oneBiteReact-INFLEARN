@@ -1,0 +1,10 @@
+.App {
+    /* App이란 클래스 네임 요소 밑에 있는 자식 요소들의 배치들을 유연하게 할 수 있도록 도와주는 속성 */
+    display: flex;
+    flex-direction: column;
+    /* gap 요소는 display가 flex인 경우에만 사용이 가능 */
+    gap: 10px;
+
+    width: 500px;
+    margin: 0 auto;
+}

@@ -1,0 +1,25 @@
+.List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.List > input {
+    /* 서치바를 화면에 가득 채워주기 */
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    padding: 15px 0px;
+}
+
+/* input 태그가 focus 되었을 때 css 설정 */
+.List > input:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(37, 147, 255);
+}
+
+.List .todos_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
