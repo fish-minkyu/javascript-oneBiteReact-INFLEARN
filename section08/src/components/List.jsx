@@ -2,7 +2,7 @@ import "./List.css";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
 
-const List = ({ todos, onUpdate }) => {
+const List = ({ todos, onUpdate, onDelete }) => {
     // 검색 기능
     const [search, setSearch] = useState("");
 
@@ -36,7 +36,12 @@ const List = ({ todos, onUpdate }) => {
                     // 각각의 요소를 key란 prop으로 구분하게 된다.
                     // 그러므로 모든 컴포넌트에게 key란 prop을 고유한 값으로 전달해야 한다.
                     return (
-                        <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />
+                        <TodoItem
+                            key={todo.id}
+                            {...todo}
+                            onUpdate={onUpdate}
+                            onDelete={onDelete}
+                        />
                     );
                 })}
             </div>
