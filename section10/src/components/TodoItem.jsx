@@ -40,3 +40,8 @@ export default memo(TodoItem, (prevProps, nextProps) => {
 
     return true;
 });
+// 왜 이렇게 설정을 해주는걸까?
+// 함수도 하나의 객체이기 때문에, onUpdate, onDelete 함수가 매번 새롭게 생성이 된다.
+// 따라서, 이 두 함수가 매번 새롭게 생성이 되면서 Props가 바뀌었다고 판단되어서
+// 불필요한 리렌더링이 발생할 수 있다.
+// 이를 방지하기 위해서, App.jsx에서 useCallback을 사용해서 함수를 메모이제이션 해주면 된다.

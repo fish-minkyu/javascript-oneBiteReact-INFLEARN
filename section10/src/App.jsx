@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef, useReducer, useCallback } from "react";
 
 const mockData = [
     {
@@ -74,6 +74,13 @@ function App() {
             targetId: targetId,
         });
     };
+
+    // 1. 인자
+    // : 최적화하고 싶은 함수, 즉 불필요하게 재성되지 않도록 방지하고 싶은 함수
+    // 2. deps(의존성 배열)
+    // : deps 배열 안에 있는 값이 바뀌었을 때에만 함수를 재생성
+    // : 빈 배열일 경우에는 컴포넌트가 처음 렌더링 될 때에만 함수가 생성되고, 그 이후로는 계속해서 같은 함수 참조
+    useCallback(() => {})
 
     return (
         <div className="App">
