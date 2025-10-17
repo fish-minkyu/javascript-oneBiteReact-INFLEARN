@@ -8,6 +8,7 @@ import {
     useReducer,
     useCallback,
     createContext,
+    useMemo,
 } from "react";
 
 const mockData = [
@@ -50,7 +51,8 @@ function reducer(state, action) {
 
 // 컨텍스트 객체는 보통 컴포넌트 외부에서 선언하게 된다.
 // 컴포넌트 내부에 선언을 하게 되면 해당 컴포넌트가 리렌더링 될 때마다 새로 생성되기 때문이다.
-export const TodoContext = createContext();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {
     const [todos, dispatch] = useReducer(reducer, mockData);
@@ -89,20 +91,20 @@ function App() {
         });
     }, []);
 
+    // App 컴포넌트 마운트 이후로 재생성되지 않도록 설정
+    const memoizedDispatch = useMemo(() => {
+        return { onCreate, onUpdate, onDelete };
+    }, []);
+
     return (
         <div className="App">
             <Header />
-            <TodoContext.Provider
-                value={{
-                    todos,
-                    onCreate,
-                    onUpdate,
-                    onDelete,
-                }}
-            >
-                <Editor />
-                <List />
-            </TodoContext.Provider>
+            <TodoStateContext.Provider value={todos}>
+                <TodoDispatchContext.Provider value={memoizedDispatch}>
+                    <Editor />
+                    <List />
+                </TodoDispatchContext.Provider>
+            </TodoStateContext.Provider>
         </div>
     );
 }

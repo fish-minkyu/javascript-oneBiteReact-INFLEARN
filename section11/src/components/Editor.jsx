@@ -1,11 +1,11 @@
 import "./Editor.css";
 import { useState, useRef, useContext } from "react";
-import { TodoContext } from "../App";
+import { TodoDispatchContext } from "../App";
 
 const Editor = () => {
     // useContext라는 React hook은 인수로 전달한
     // context로부터 공급된 데이터를 반환해주는 함수다.
-    const { onCreate } = useContext(TodoContext);
+    const { onCreate } = useContext(TodoDispatchContext);
     const [content, setContent] = useState("");
     const contentRef = useRef();
 
