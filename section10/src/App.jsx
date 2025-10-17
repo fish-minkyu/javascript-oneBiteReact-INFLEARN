@@ -47,7 +47,7 @@ function App() {
     const idRef = useRef(3);
 
     // 생성
-    const onCreate = (content) => {
+    const onCreate = useCallback((content) => {
         dispatch({
             type: "CREATE",
             data: {
@@ -57,30 +57,27 @@ function App() {
                 date: new Date().getTime(),
             },
         });
-    };
+    }, []);
 
     // 수정
-    const onUpdate = (targetId) => {
+    const onUpdate = useCallback((targetId) => {
         dispatch({
             type: "UPDATE",
             targetId: targetId,
         });
-    };
-
-    // 삭제
-    const onDelete = (targetId) => {
-        dispatch({
-            type: "DELETE",
-            targetId: targetId,
-        });
-    };
+    }, []);
 
     // 1. 인자
     // : 최적화하고 싶은 함수, 즉 불필요하게 재성되지 않도록 방지하고 싶은 함수
     // 2. deps(의존성 배열)
     // : deps 배열 안에 있는 값이 바뀌었을 때에만 함수를 재생성
-    // : 빈 배열일 경우에는 컴포넌트가 처음 렌더링 될 때에만 함수가 생성되고, 그 이후로는 계속해서 같은 함수 참조
-    useCallback(() => {})
+    // 빈 배열일 경우에는 컴포넌트가 처음 렌더링 될 때에만 함수가 생성되고, 그 이후로는 계속해서 같은 함수 참조
+    const onDelete = useCallback((targetId) => {
+        dispatch({
+            type: "DELETE",
+            targetId: targetId,
+        });
+    }, []);
 
     return (
         <div className="App">
