@@ -2,7 +2,13 @@ import "./App.css";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
-import { useState, useRef, useReducer, useCallback } from "react";
+import {
+    useState,
+    useRef,
+    useReducer,
+    useCallback,
+    createContext,
+} from "react";
 
 const mockData = [
     {
@@ -41,6 +47,10 @@ function reducer(state, action) {
             return state;
     }
 }
+
+// 컨텍스트 객체는 보통 컴포넌트 외부에서 선언하게 된다.
+// 컴포넌트 내부에 선언을 하게 되면 해당 컴포넌트가 리렌더링 될 때마다 새로 생성되기 때문이다.
+export const TodoContext = createContext();
 
 function App() {
     const [todos, dispatch] = useReducer(reducer, mockData);
@@ -82,8 +92,17 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <Editor onCreate={onCreate} />
-            <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+            <TodoContext.Provider
+                value={{
+                    todos,
+                    onCreate,
+                    onUpdate,
+                    onDelete,
+                }}
+            >
+                <Editor />
+                <List />
+            </TodoContext.Provider>
         </div>
     );
 }
