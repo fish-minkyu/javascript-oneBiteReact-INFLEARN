@@ -28,7 +28,7 @@ function App() {
                 {/* path란 prop를 통해 위에서 아래로 순차적으로 경로를 확인하고 일치하는 경로가 있으면 해당 요소를 렌더링한다. */}
                 <Route path="/" element={<Home />} />
                 <Route path="/new" element={<New />} />
-                <Route path="/diary" element={<Diary />} />
+                <Route path="/diary/:id" element={<Diary />} />
                 {/* 위에 있는 경로가 모두 아닌 경우 Notfound 페이지를 보여준다. */}
                 <Route path="*" element={<Notfound />} />
             </Routes>
