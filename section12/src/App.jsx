@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Diary from "./pages/Diary";
 import New from "./pages/New";
 import Notfound from "./pages/Notfound";
+import Button from "./components/Button";
+import Header from "./components/Header";
 
 import { getEmotionImage } from "./util/get-emotion-image";
 
@@ -18,19 +20,35 @@ function App() {
 
     return (
         <>
-            <div>
-                <img src={getEmotionImage(1)} />
-                <img src={getEmotionImage(2)} />
-                <img src={getEmotionImage(3)} />
-                <img src={getEmotionImage(4)} />
-                <img src={getEmotionImage(5)} />
-            </div>
-            <div>
-                <Link to={"/"}>Home</Link>
-                <Link to={"/new"}>New</Link>
-                <Link to={"/diary"}>Diary</Link>
-            </div>
-            <button onClick={onClickButton}>New 페이지로 이동</button>
+            <Header
+                title={"Header"}
+                leftChild={<Button text={"Left"} />}
+                rightChild={<Button text={"Right"} />}
+            />
+
+            <Button
+                text={"123"}
+                onClick={() => {
+                    console.log("123번 클릭!");
+                }}
+            />
+
+            <Button
+                text={"123"}
+                type={"POSITIVE"}
+                onClick={() => {
+                    console.log("123번 클릭!");
+                }}
+            />
+
+            <Button
+                text={"123"}
+                type={"NEGATIVE"}
+                onClick={() => {
+                    console.log("123번 클릭!");
+                }}
+            />
+
             {/* 1. Routes 컴포넌트 안에 Route 컴포넌트만 들어갈 수 있다. */}
             {/* 2. Routes 컴포넌트 바깥에 배치된 요소들은 페이지 라우팅과는 관련 없이, 모든 페이지에 다 동일하게 렌더링이 된다. */}
             <Routes>
