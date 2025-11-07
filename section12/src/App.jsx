@@ -1,54 +1,43 @@
 import "./App.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useReducer } from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Diary from "./pages/Diary";
 import New from "./pages/New";
+import Edit from "./pages/Edit";
 import Notfound from "./pages/Notfound";
-import Button from "./components/Button";
-import Header from "./components/Header";
 
-import { getEmotionImage } from "./util/get-emotion-image";
+const mockData = [
+    {
+        id: 1,
+        createdDate: new Date().getTime(),
+        emotionId: 1,
+        content: "1번 일기 내용"
+    },
+    {
+        id: 2,
+        createdDate: new Date().getTime(),
+        emotionId: 2,
+        content: "2번 일기 내용"
+    },
+    {
+        id: 3,
+        createdDate: new Date().getTime(),
+        emotionId: 3,
+        content: "3번 일기 내용"
+    },
+]
 
-// 1. "/": 모든 일기를 조회하는 Home 페이지
-// 2. "/new": 새로운 일기를 작성하는 New 페이지
-// 3. "/diary": 일기를 상세히 조회하는 Diary 페이지
+
+function reducer(state, action) {
+    return state;
+}
+
 function App() {
-    const nav = useNavigate();
-    const onClickButton = () => {
-        nav("/new");
-    };
+    const [data, dispatch] = useReducer(reducer, mockData);
 
     return (
         <>
-            <Header
-                title={"Header"}
-                leftChild={<Button text={"Left"} />}
-                rightChild={<Button text={"Right"} />}
-            />
-
-            <Button
-                text={"123"}
-                onClick={() => {
-                    console.log("123번 클릭!");
-                }}
-            />
-
-            <Button
-                text={"123"}
-                type={"POSITIVE"}
-                onClick={() => {
-                    console.log("123번 클릭!");
-                }}
-            />
-
-            <Button
-                text={"123"}
-                type={"NEGATIVE"}
-                onClick={() => {
-                    console.log("123번 클릭!");
-                }}
-            />
-
             {/* 1. Routes 컴포넌트 안에 Route 컴포넌트만 들어갈 수 있다. */}
             {/* 2. Routes 컴포넌트 바깥에 배치된 요소들은 페이지 라우팅과는 관련 없이, 모든 페이지에 다 동일하게 렌더링이 된다. */}
             <Routes>
@@ -56,6 +45,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/new" element={<New />} />
                 <Route path="/diary/:id" element={<Diary />} />
+                <Route path="/edit/:id" element={<Edit />} />
                 {/* 위에 있는 경로가 모두 아닌 경우 Notfound 페이지를 보여준다. */}
                 <Route path="*" element={<Notfound />} />
             </Routes>
