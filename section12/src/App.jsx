@@ -88,27 +88,6 @@ function App() {
 
     return (
         <>
-            <button
-                onClick={() => {
-                    onCreate(new Date().getTime(), 1, "Hello");
-                }}
-            >
-                일기 추가 테스트
-            </button>
-            <button
-                onClick={() => {
-                    onUpdate(1, new Date().getTime(), 3, "수정된 일기입니다.");
-                }}
-            >
-                일기 수정 테스트
-            </button>
-            <button
-                onClick={() => {
-                    onDelete(1);
-                }}
-            >
-                일기 삭제 테스트
-            </button>
             {/* 1. Routes 컴포넌트 안에 Route 컴포넌트만 들어갈 수 있다. */}
             {/* 2. Routes 컴포넌트 바깥에 배치된 요소들은 페이지 라우팅과는 관련 없이, 모든 페이지에 다 동일하게 렌더링이 된다. */}
             <DiaryStateContext.Provider value={data}>
