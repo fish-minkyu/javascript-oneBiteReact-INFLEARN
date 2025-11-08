@@ -4,9 +4,12 @@ import Button from "../components/Button";
 import Viewer from "../components/Viewer";
 import useDiary from "../hooks/useDiary";
 import { getStringedDate } from "../util/get-stringed-date";
+import usePageTitle from "../hooks/\busePageTitle";
 
 const Diary = () => {
     const params = useParams();
+    usePageTitle(`${params.id}번 일기`);
+
     const nav = useNavigate();
 
     const currentDiaryItem = useDiary(params.id);
@@ -15,7 +18,7 @@ const Diary = () => {
     }
 
     const { createdDate, emotionId, content } = currentDiaryItem;
-    const title = getStringedDate(new Date(createdDate))
+    const title = getStringedDate(new Date(createdDate));
 
     return (
         <div>
